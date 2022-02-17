@@ -13,6 +13,7 @@ django = "*"
 djangorestframework = "*"
 django-filter = "*"
 django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
