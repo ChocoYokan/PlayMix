@@ -11,6 +11,8 @@ migrate = "pipenv run python manage.py migrate"
 [packages]
 django = "*"
 djangorestframework = "*"
+django-filter = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
