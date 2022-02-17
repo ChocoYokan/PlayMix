@@ -5,6 +5,8 @@ name = "pypi"
 
 [scripts]
 start = "pipenv run python manage.py runserver"
+makemigrate = "pipenv run python manage.py makemigrate"
+migrate = "pipenv run python manage.py migrate"
 
 [packages]
 django = "*"
