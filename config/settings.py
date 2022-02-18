@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     #app
     'accounts.apps.AccountsConfig',
+    'playlist.apps.PlaylistConfig',
 
     #lib
     'rest_framework',
