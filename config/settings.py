@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
@@ -37,7 +38,7 @@ with open(SECRET_KEY_PATH, mode="r") as f:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', False)
 
 ALLOWED_HOSTS = []
 
@@ -125,19 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASS': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PAGENATION_CLASS': 'rest_framework.pagenation.PageNumberPagination',
-    'PAGE_SIZE': 100,
-}
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',
-]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -163,16 +151,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
     ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    # ページネーションはとりあえず10にしておく
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
 
-# CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-]
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1, minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+# すべてのオリジンを許可
+CORS_ALLOW_ALL_ORIGINS = True
+
+# 設定したオリジンを許可
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8000",
+# ]
+
+YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
