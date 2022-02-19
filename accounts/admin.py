@@ -5,7 +5,7 @@ from accounts.models import Follow, User
 
 
 class UserCustomAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'playlists')
+    list_display = ('username', 'email')
 
 admin.site.register(User, UserCustomAdmin)
 
