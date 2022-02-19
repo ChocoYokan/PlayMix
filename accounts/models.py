@@ -3,7 +3,6 @@ from django.contrib.auth.models import PermissionsMixin, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from playlist.models import PlayList
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -35,14 +34,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_("active"), default=True)
 
     objects = UserManager()
-
-    playlists = models.ForeignKey(
-        PlayList,
-        verbose_name="プレイリスト",
-        related_name="user_playlists",
-        on_delete=models.CASCADE,
-        null=True,
-    )
 
     def __str__(self):
         return self.username
