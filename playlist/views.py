@@ -14,11 +14,11 @@ class PlayLists(ListAPIView, CreateAPIView):
     queryset = PlayList.objects.all()
     serializer_class = PlaylistSerializer
 
-    def get_queryset(self):
+    def get_related_user_record(self, obj):
         """
         ログインしているユーザのプレイリスト情報を返す
         """
-        user = self.request.user
+        user = obj.id
         return PlayList.objects.filter(user=user)
 
 class PlayListDetail(RetrieveUpdateDestroyAPIView):
