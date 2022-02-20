@@ -1,19 +1,26 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
 from accounts.models import Follow
 
 User = get_user_model()
 
-class UserSerializer(serializers.ModelSerializer):
+# class UserSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = User
-        fields = (
-            "id",
-            "username",
-            "email",
-        )
+#     class Meta:
+#         model = User
+#         fields = (
+#             "id",
+#             "username",
+#             "email",
+#         )
+
+#     def validate_password(self,value:str) ->str:
+#         """
+#         パスワードをハッシュ値に変換する
+#         """
+#         return make_password(value)
 
 
 class FollowSerializer(serializers.HyperlinkedModelSerializer):

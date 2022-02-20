@@ -7,20 +7,20 @@ from accounts.serializers import FollowSerializer, UserSerializer
 
 User = get_user_model()
 
-class Users(CreateAPIView):
-    """
-    ユーザの作成ができるエンドポイント
-    """
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = UserSerializer
+# class Users(CreateAPIView):
+#     """
+#     ユーザの作成ができるエンドポイント
+#     """
+#     queryset = User.objects.filter(is_active=True)
+#     serializer_class = UserSerializer
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    ユーザの編集・表示ができるエンドポイント
-    """
+# class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+#     """
+#     ユーザの編集・表示ができるエンドポイント
+#     """
 
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = UserSerializer
+#     queryset = User.objects.filter(is_active=True)
+#     serializer_class = UserSerializer
         
 class FollowDetailViewSet(ListAPIView):
     """
