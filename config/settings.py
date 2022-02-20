@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
     #lib
     'rest_framework',
+    'rest_framework.authtoken',
     'djoser',
     'rest_framework_simplejwt',
     'django_filters',
@@ -167,10 +168,10 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1, minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),
 
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 # すべてのオリジンを許可
