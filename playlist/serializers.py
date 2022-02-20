@@ -19,7 +19,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PlayList
-        fields = ("name", "contents", "updated_at", "created_at")
+        fields = ("id", "name", "contents", "updated_at", "created_at")
 
 class PlayListWriteSerializer(serializers.ModelSerializer):
 

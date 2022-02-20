@@ -20,7 +20,8 @@ class PlayListViewSet(viewsets.ModelViewSet):
         return PlayList.objects.filter(user=user)
 
     def get_serializer_class(self):
-        if self.action == "create":
+        methods = self.action
+        if methods == "create" or methods == "update":
             return PlayListWriteSerializer
         return PlaylistSerializer
 
