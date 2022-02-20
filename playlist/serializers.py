@@ -1,5 +1,3 @@
-from dataclasses import fields
-
 from rest_framework import serializers
 
 from playlist.models import Content, PlayList
