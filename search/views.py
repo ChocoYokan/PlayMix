@@ -1,15 +1,15 @@
+import requests
+import spotipy
 from django.conf import settings
 from django.shortcuts import render
 from lyricsgenius import Genius
-import requests
-import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
 # PlayMix用の認証IDと秘密鍵
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="5582af67d40c41a6b60f1e6fdb47657e",
-                                                           client_secret="e1a1ecff3b5846c689c9f2cd5a43c72e"))
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=settings.SPOTIFY_CLIENT_ID,
+                                                           client_secret=settings.SPOTIFY_CLIENT_ID))
 # Geniusのトークン
-client_access_token = "a_s_hO4kKy3UN1ajwOayKCUxyEedU21C08LVtkgvumOj8AQAq8ic03FVZny6kVdm"
+client_access_token = settings.SPOTIFY_CLIENT_SEACRET
 
 #----------------------------------------Spotify_API---------------------------------------------#
 
