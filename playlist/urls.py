@@ -1,10 +1,10 @@
-from django.urls import path
+from rest_framework import routers
 
-from playlist.views import PlayListDetail, PlayLists
+from playlist.views import ContentViewSet, PlayListViewSet
 
 app_name = 'playlist'
 
-urlpatterns = [
-    path("playlist/", PlayLists.as_view(), name="playlist"),
-    path("playlist/<int:pk>/", PlayListDetail.as_view(), name="playlist_list"),
-]
+router = routers.DefaultRouter()
+router.register(r'contents', ContentViewSet)
+router.register(r'playlist', PlayListViewSet)
+urlpatterns = router.urls

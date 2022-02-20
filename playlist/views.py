@@ -1,27 +1,30 @@
-from rest_framework.generics import (
-    CreateAPIView,
-    ListAPIView,
-    RetrieveUpdateDestroyAPIView,
+from rest_framework import viewsets
+
+from playlist.models import Content, PlayList
+from playlist.serializers import (
+    ContentsDetailSerializer,
+    PlaylistSerializer,
+    PlayListWriteSerializer,
 )
-from rest_framework.mixins import ListModelMixin
-
-from playlist.models import PlayList
-from playlist.serializers import PlaylistSerializer
 
 
-class PlayLists(ListAPIView, CreateAPIView):
+class PlayListViewSet(viewsets.ModelViewSet):
 
     queryset = PlayList.objects.all()
-    serializer_class = PlaylistSerializer
 
-    def get_related_user_record(self, obj):
+    def get_queryset(self):
         """
         ログインしているユーザのプレイリスト情報を返す
         """
-        user = obj.id
+        user = self.request.user
         return PlayList.objects.filter(user=user)
 
-class PlayListDetail(RetrieveUpdateDestroyAPIView):
+    def get_serializer_class(self):
+        if self.action == "create":
+            return PlayListWriteSerializer
+        return PlaylistSerializer
 
-    queryset = PlayList.objects.all()
-    serializer_class = PlaylistSerializer
+class ContentViewSet(viewsets.ModelViewSet):
+    
+    queryset = Content.objects.all()
+    serializer_class = ContentsDetailSerializer
