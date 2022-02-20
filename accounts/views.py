@@ -3,7 +3,7 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView
 
 from accounts.models import Follow
-from accounts.serializers import FollowSerializer, UserSerializer
+from accounts.serializers import FollowSerializer
 
 User = get_user_model()
 
