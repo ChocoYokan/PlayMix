@@ -44,6 +44,9 @@ class Follow(models.Model):
     class Meta:
         verbose_name = _("フォロー")
         verbose_name_plural = _("フォロー一覧")
+        constraints = [
+            models.UniqueConstraint(fields=["user", "target"], name="follower")
+        ]
 
     user = models.ForeignKey(
         User,
