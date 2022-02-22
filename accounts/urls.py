@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from accounts.views import FollowDetailViewSet, FollowerDetailViewSet
 
-from accounts.views import UserList
+view_name = "accounts"
 
-urlpatterns = [
-    path("users/", UserList.as_view()),
-]
+router = routers.DefaultRouter()
+router.register(r"follow", FollowDetailViewSet)
+router.register(r"follower", FollowerDetailViewSet)

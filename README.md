@@ -21,10 +21,27 @@ $ pipenv shell
 $ cp .env.sample .env
 ```
 
+### データベース　マイグレーション
+```shell
+$ pipenv run python manage.py migrate
+```
+> または `$ pipenv run migrate`
+
+### スーパーユーザーの設定(最初だけ)
+```shell
+$ pipenv run python manage.py createsuperuser
+> username: admin
+> email: admin@hoge.hoge
+> password: admin
+```
+みたいな感じで作ってください
+
 ### ローカルサーバ起動
 ```shell
 $ pipenv run start
 ```
+
+<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/admin</a>にアクセスして先ほど設定したメールアドレスとパスワードを入力してログインするとページが開きます。
 
 ### アプリ起動
 ```shell

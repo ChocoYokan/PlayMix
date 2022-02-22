@@ -1,6 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from accounts.models import User
+from accounts.models import Follow, User
 
-admin.site.register(User, UserAdmin)
+
+class UserCustomAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email')
+
+admin.site.register(User, UserCustomAdmin)
+
+admin.site.register(Follow)
