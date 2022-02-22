@@ -16,6 +16,9 @@ django-filter = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 djoser = "*"
+lyricsgenius = "*"
+google-api-python-client = "*"
+spotipy = "*"
 
 [dev-packages]
 
