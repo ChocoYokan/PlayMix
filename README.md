@@ -20,6 +20,7 @@ $ pipenv shell
 ```shell
 $ cp .env.sample .env
 ```
+> 認証情報はTeamsへ
 
 ### データベース　マイグレーション
 ```shell
