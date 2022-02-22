@@ -25,3 +25,16 @@ $ cp .env.sample .env
 ```shell
 $ pipenv run start
 ```
+
+### アプリ起動
+```shell
+$ npm start
+```
+
+### アプリビルド
+```shell
+## Windows
+$ npm run build-windows
+## macOS
+$ npm run build-macOS
+```

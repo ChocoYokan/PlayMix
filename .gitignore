@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 __seacretkey__
 .vscode
+
+.DS_Store
+node_modules/

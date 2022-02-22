@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "(cd ./app && npx tailwindcss -i ./src/input.css -o ./src/output.css) && electron ./app",
+    "build-macOS": "electron-packager ./app PlayMix --platform=darwin --arch=x64 --icon=app.ico --overwrite",
+    "build-windows": "electron-packager ./app PlayMix --platform=win32 --arch=x64 --icon=app.ico --overwrite"
+  },
+  "devDependencies": {
+    "electron": "^17.0.1",
+    "electron-packager": "^15.4.0"
+  }
+}

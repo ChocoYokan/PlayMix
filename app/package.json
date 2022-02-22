@@ -1,0 +1,6 @@
+{
+    "main": "src/main.js",
+    "devDependencies": {
+        "tailwindcss": "^3.0.23"
+    }
+}
