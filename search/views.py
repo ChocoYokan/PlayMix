@@ -18,9 +18,10 @@ client_access_token = settings.SPOTIFY_CLIENT_SEACRET
 # Create your models here.
 
 def search(request):
-    youtube = youtube_search(request)
-    nikoniko = nikoniko_search(request)
-    spotify = sp_info(request)
+    search_word = request.GET.get("w", None)
+    youtube = youtube_search(search_word)
+    nikoniko = nikoniko_search(search_word)
+    spotify = sp_info(search_word)
     result = {}
     results = []
     for i in range(len(nikoniko['data'])):
