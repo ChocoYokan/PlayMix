@@ -1,5 +1,5 @@
+from django.urls import path, include
 from rest_framework import routers
-
 from accounts.views import FollowDetailViewSet, FollowerDetailViewSet
 
 view_name = "accounts"

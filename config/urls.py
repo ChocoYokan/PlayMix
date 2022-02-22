@@ -21,6 +21,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from search.views import youtube_api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,9 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/auth/', include('djoser.urls')),
     path('api/v1/auth/', include('djoser.urls.jwt')),
+    path('api/v1/', include("accounts.urls")),
+    path('api/v1/', include("playlist.urls")),
     path('api/v1/', include(accounts_router.urls)),
     path('api/v1/', include(playlist_router.urls)),
+    path("api/search/", youtube_api, name="search"),
 ]
