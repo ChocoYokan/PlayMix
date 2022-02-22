@@ -1,17 +1,13 @@
+import copy
+
+import requests
+import spotipy
 from django.conf import settings
-from django.shortcuts import render
+from django.core.serializers import serialize
 from django.http import JsonResponse
-from django.db import models
+from googleapiclient.discovery import build
 from lyricsgenius import Genius
 from spotipy.oauth2 import SpotifyClientCredentials
-from googleapiclient.discovery import build
-from django.core.serializers import serialize
-import copy
-import requests
-import json
-import pprint
-import spotipy
-
 
 # PlayMix用の認証IDと秘密鍵
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=settings.SPOTIFY_CLIENT_ID,
