@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from accounts.urls import router as accounts_router
 from django.contrib import admin
 from django.urls import include, path
 from playlist.urls import router as playlist_router
@@ -30,6 +31,7 @@ urlpatterns = [
     path('api/v1/auth/', include('djoser.urls.jwt')),
     path('api/v1/', include("accounts.urls")),
     path('api/v1/', include("playlist.urls")),
+    path('api/v1/', include(accounts_router.urls)),
     path('api/v1/', include(playlist_router.urls)),
     path("api/search/", youtube_api, name="search"),
 ]
