@@ -15,7 +15,7 @@ import spotipy
 
 # PlayMix用の認証IDと秘密鍵
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=settings.SPOTIFY_CLIENT_ID,
-                                                           client_secret=settings.SPOTIFY_CLIENT_ID))
+                                                           client_secret=settings.SPOTIFY_CLIENT_SEACRET))
 # Geniusのトークン
 client_access_token = settings.SPOTIFY_CLIENT_SEACRET
 
@@ -52,14 +52,6 @@ def search(request):
     # pprint.pprint(final_result)
     return JsonResponse(final_result)
 
-
-def youtube_api(request) -> JsonResponse:
-    search_word = request.GET.get("w", None)
-    # print(search_word)
-    # print(settings.YOUTUBE_API_KEY)
-    # search(search_word)
-    result = {}
-    return JsonResponse(status=200, data=result)
 
 #----------------------------------------Youtube_API---------------------------------------------#
 

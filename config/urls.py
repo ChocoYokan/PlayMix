@@ -20,7 +20,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from search.views import youtube_api
+from search.views import search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,5 +31,5 @@ urlpatterns = [
     path('api/v1/', include("accounts.urls")),
     path('api/v1/', include("playlist.urls")),
     path('api/v1/', include(playlist_router.urls)),
-    path("api/search/", youtube_api, name="search"),
+    path("api/search/", search, name="search"),
 ]
