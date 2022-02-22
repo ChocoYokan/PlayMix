@@ -42,3 +42,16 @@ $ pipenv run start
 ```
 
 <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/admin</a>にアクセスして先ほど設定したメールアドレスとパスワードを入力してログインするとページが開きます。
+
+### アプリ起動
+```shell
+$ npm start
+```
+
+### アプリビルド
+```shell
+## Windows
+$ npm run build-windows
+## macOS
+$ npm run build-macOS
+```
