@@ -1,17 +1,29 @@
 from django.contrib.auth import get_user_model
-from rest_framework import generics, permissions, viewsets
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework import viewsets
 
 from accounts.models import Follow
 from accounts.serializers import FollowSerializer
 
 User = get_user_model()
         
-class FollowDetailViewSet(ListAPIView):
+class FollowDetailViewSet(viewsets.ModelViewSet):
     """
-    フォローの編集・表示ができるエンドポイント
+    フォローする側の編集・表示ができるエンドポイント
     """
-
     queryset = Follow.objects.all()
     serializer_class = FollowSerializer
-    permissions_class = [None]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Follow.objects.filter(user=user)
+
+class FollowerDetailViewSet(viewsets.ModelViewSet):
+    """
+    フォローされる側の編集・表示ができるエンドポイント
+    """
+    queryset = Follow.objects.all()
+    serializer_class = FollowSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Follow.objects.filter(target=user)
