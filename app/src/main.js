@@ -33,13 +33,15 @@ function createWindow() {
         axios.get("/auth/users/me/", options)
             .then(response => {
                 if (response.status === 200) {
+                    console.log("success auth");
                     store.set("user", response.data);
                     mainWindow.loadFile('./src/index.html');
                 } else {
+                    console.log("fail auth");
                     mainWindow.loadFile('./src/login.html');
                 }
             })
-            .catch(err => console.error("error", err));
+            .catch(err => mainWindow.loadFile('./src/login.html'));
     }
     const accessToken = store.get("accessToken");
     if (accessToken !== "") {
@@ -71,7 +73,7 @@ function createWindow() {
             })
             .catch((err) => {
                 //通信エラー
-                console.log("error", err);
+                console.log("error", err.data.detail);
             });
     })
 
@@ -100,6 +102,27 @@ ipcMain.handle("storeGet", (event, accessText) => {
     return store.get(accessText)
 });
 
+//*
+//* プレイリスト
+//*
+// Palylistをロードする処理
+ipcMain.handle("loadPlaylist", (event) => {
+    const accessToken = store.get("accessToken");
+
+    const options = {
+        headers: { Authorization: `JWT ${accessToken}` }
+    };
+
+    const results = axios.get("playlist/", options)
+        .then((response) => {
+            return response.data.results;
+        })
+        .catch((err) => {
+            return [];
+        });
+    return results;
+})
+
 // PlayListを新規作成する処理
 ipcMain.handle("addPlaylist", (event, name) => {
     const user = store.get("user");
@@ -111,9 +134,11 @@ ipcMain.handle("addPlaylist", (event, name) => {
         user: userId
     }
 
-    axios.post("playlist/", params, {
+    const result = axios.post("playlist/", params, {
             headers: { Authorization: `JWT ${accessToken}` },
         })
         .then( () => { return true })
         .catch( () => { return false })
+
+    return result
 });

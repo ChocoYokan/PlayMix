@@ -3,6 +3,7 @@
 const init = () => {
     loadPlaylist();
 }
+
 init();
 
 updateSeekBar();
@@ -214,19 +215,33 @@ search.addEventListener('click', () => {
  * PlayList
  */
 // プレイリストのロード
-function loadPlaylist() {
+const playlistsDom = document.getElementById('playlists');
+async function loadPlaylist() {
     //
+    const playlistData = await window.electronAPI.loadPlaylist();
+    const domData = playlistData.map( (playlist) => {
+        return `
+        <h1 class="text-4xl font-bold">${playlist.name}</h1>
+        <div class="flex overflow-x-auto mt-2">
+            <div class="flex-none w-60 mr-5">
+                <div class="w-52 h-52 bg-white"></div>
+            </div>
+        </div>
+        `
+    });
+    playlistsDom.innerHTML = domData.join("");
 }
 
 // プレイリストの追加
- const loginForm = document.getElementById('addPlaylistForm');
- loginForm.addEventListener('submit', async (event) => {
+const addPlaylistForm = document.getElementById('addPlaylistForm');
+addPlaylistForm.addEventListener('submit', async (event) => {
      event.preventDefault();
      const form = document.forms['addPlaylist'];
      const name = form.elements['name'].value;
      const is_created = await window.electronAPI.addPlaylist(name, name);
      if (is_created) {
-         //reload
+        closeModal();
+        loadPlaylist();
      }
  });
     
