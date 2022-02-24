@@ -5,4 +5,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
     storeGet: async (accessText) => await ipcRenderer.invoke('storeGet', accessText),
     addPlaylist: async (name) => await ipcRenderer.invoke('addPlaylist', name),
     loadPlaylist: async () => await ipcRenderer.invoke('loadPlaylist'),
+    addContent: async (content) => await ipcRenderer.invoke('addContent', content),
 })

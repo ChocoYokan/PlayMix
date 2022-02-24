@@ -105,9 +105,9 @@
         <div id="player" class="w-full h-full"></div>
     </div>
 
-    <!-- モーダル-->
+    <!-- プレイリストモーダル-->
     <div class="overlay hidden"></div>
-    <div class="modal hidden">
+    <div id="playlistModal" class="modal hidden">
         <button class="close-modal">&times;</button>
         <div>
             <form id="addPlaylistForm" name="addPlaylist">
@@ -115,6 +115,21 @@
                 <label for="name" class="text-left">Name</label>
                 <input type="text" name="name" class="w-full h-10 mb-4 text-sub3" required>
                 <button type="submit" class="rounded bg-green-400">作成</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- コンテンツ追加モーダル -->
+    <div id="ContentModal" class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <div>
+            <form id="addContentForm" name="addContent">
+                <p>プレイリストを選択</p>
+                <div class="flex justify-center">
+                    <div id="contentFormBody">
+                    </div>
+                </div>
+                <button type="submit" class="rounded bg-green-400">保存</button>
             </form>
         </div>
     </div>
