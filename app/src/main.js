@@ -1,9 +1,21 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path')
+const path = require('path');
+const axios = require('axios');
+const electronReload = require('electron-reload');
+const Store = require('electron-store');
+global.store = new Store({encryptionKey: 'PlayMix'});
+
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1/';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+require('electron-reload')(__dirname, {
+    electron: require('${__dirname}/../../node_modules/electron')
+});
 
 let mainWindow;
 
 function createWindow() {
+    
     mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: false,
@@ -13,23 +25,54 @@ function createWindow() {
         width: 1200, height: 800,
         minWidth: 800, minHeight: 300,
     });
+    
+    const login = (accessToken) => {
+        const options = {
+            headers: { Authorization: "JWT " + accessToken }
+        };
+        axios.get("/auth/users/me/", options)
+            .then(response => {
+                if (response.status === 200) {
+                    store.set("user", response.data);
+                    mainWindow.loadFile('./src/index.html');
+                } else {
+                    mainWindow.loadFile('./src/login.html');
+                }
+            })
+            .catch(err => console.error("error", err));
+    }
 
-    // TODO: ここの条件分岐でアクセストークンが有効なのか確認してください。
-    if (false) {
-        mainWindow.loadFile('./src/index.html');
+    const accessToken = store.get("accessToken");
+    if (accessToken !== "") {
+        login(accessToken);
     } else {
         mainWindow.loadFile('./src/login.html');
     }
 
-    ipcMain.on('auth-account', (event, [id, password]) => {
+    ipcMain.on('auth-account', (event, [email, password]) => {
         const webContents = event.sender;
-
-        console.log(id, password);
-
-        //TODO: ここの条件分岐で上のid,passwordを使って認証してください
-        if (true) {
-            mainWindow.loadFile('./src/index.html');
+        
+        const options = {
+            "email": email,
+            "password": password
         }
+
+        axios.post("/auth/jwt/create/", options)
+            .then((res) => {
+                if (res.status === 200) {
+                    //ログイン
+                    store.set("accessToken", res.data.access || "");
+                    store.set("refreshToken", res.data.access || "");
+                    mainWindow.loadFile('./src/index.html');
+                } else {
+                    //認証エラー
+                    console.log("error", res.data);
+                }
+            })
+            .catch((err) => {
+                //通信エラー
+                console.log("error", err);
+            });
     })
 
     mainWindow.on('closed', () => {
