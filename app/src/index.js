@@ -158,10 +158,11 @@ function secToTime(second) {
     return ret;
 }
 
+const truncate = (str, len=22) => str.length <= len ? str: (str.substr(0, len)+"...");
+
 const search = document.getElementById('search');
 const search_text = document.getElementById('search_text');
 search.addEventListener('click', () => {
-    const truncate = (str, len=22) => str.length <= len ? str: (str.substr(0, len)+"...");
     // fetch('http://127.0.0.1:8000/api/search/?w='+ search_text.value)
     //     .then(response => response.json())
     //     .then(data => {
@@ -378,14 +379,27 @@ async function loadPlaylist() {
     //
     const playlistData = await window.electronAPI.loadPlaylist();
     const domData = playlistData.map( (playlist) => {
-        return `
-        <h1 class="text-4xl font-bold">${playlist.name}</h1>
-        <div class="flex overflow-x-auto mt-2">
-            <div class="flex-none w-60 mr-5">
-                <div class="w-52 h-52 bg-white"></div>
+        const contents = playlist.contents;
+        const contentsDom = contents.map( (content) => {
+            return `
+            <div class="flex-none w-60 mr-5 hover">
+                <div class="hover-img"><img src="${content.thumbnail}"  alt=""  class="w-52 h-52"></div>
+                <div class="hover-text">
+                    <p class="text1">${truncate(content.name)}</p>
+                </div>
             </div>
-        </div>
-        `
+            `
+        })
+        if (contents.length < 1) {
+            return "" //コンテンツが一つもないものは表示されない
+        } else {
+            return `
+            <h1 class="text-4xl font-bold">${playlist.name}</h1>
+            <div class="flex overflow-x-auto mt-2">
+                ${contentsDom.join("")}
+            </div>
+            `
+        }
     });
     playlistsDom.innerHTML = domData.join("");
 }
