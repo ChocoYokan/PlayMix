@@ -184,6 +184,7 @@
             <li>
                 <p>Playlist</p>
                 <button
+                    id="addPlaylist"
                     class="block transition ease-in-out py-1 my-3 w-full text-xl text-center font-thin rounded-lg hover:bg-sub3">
                     <div class="flex items-center text-center">
                         <img src="../static/add.svg" class="h-8 mx-2">
@@ -228,6 +229,19 @@
     <!-- 再生部分 -->
     <div class="fixed bottom-0 left-0 bg-white w-[480px] h-[270px]">
         <div id="player" class="w-full h-full"></div>
+    </div>
+
+    <!-- モーダル-->
+    <div class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <div>
+            <form id="addPlaylistForm" name="addPlaylist">
+                <p>プレイリストを作成</p>
+                <label for="name" class="text-left">Name</label>
+                <input type="text" name="name" class="w-full h-10 mb-4 text-sub3" required>
+                <button type="submit" class="rounded bg-green-400">作成</button>
+            </form>
+        </div>
     </div>
 
 </body>
