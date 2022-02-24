@@ -28,7 +28,7 @@ function createWindow() {
     
     const login = (accessToken) => {
         const options = {
-            headers: { Authorization: "JWT " + accessToken }
+            headers: { Authorization: `JWT ${accessToken}` }
         };
         axios.get("/auth/users/me/", options)
             .then(response => {
@@ -41,7 +41,6 @@ function createWindow() {
             })
             .catch(err => console.error("error", err));
     }
-
     const accessToken = store.get("accessToken");
     if (accessToken !== "") {
         login(accessToken);
@@ -61,6 +60,7 @@ function createWindow() {
             .then((res) => {
                 if (res.status === 200) {
                     //ログイン
+                    console.log("fetchしたaccess", res.data.access)
                     store.set("accessToken", res.data.access || "");
                     store.set("refreshToken", res.data.access || "");
                     mainWindow.loadFile('./src/index.html');
@@ -92,4 +92,28 @@ app.on('activate', () => {
     if (mainWindow === null) {
         createWindow();
     }
+});
+
+
+// storeに保存されたデータを読みだす処理
+ipcMain.handle("storeGet", (event, accessText) => {
+    return store.get(accessText)
+});
+
+// PlayListを新規作成する処理
+ipcMain.handle("addPlaylist", (event, name) => {
+    const user = store.get("user");
+    const userId = user.id;
+    const accessToken = store.get("accessToken");
+
+    const params = {
+        name: name,
+        user: userId
+    }
+
+    axios.post("playlist/", params, {
+            headers: { Authorization: `JWT ${accessToken}` },
+        })
+        .then( () => { return true })
+        .catch( () => { return false })
 });

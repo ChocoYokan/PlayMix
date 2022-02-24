@@ -1,3 +1,10 @@
+"use strict";
+
+const init = () => {
+    loadPlaylist();
+}
+init();
+
 updateSeekBar();
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -202,5 +209,51 @@ search.addEventListener('click', () => {
             result_content.appendChild(row_s);
         });
 });
+
+/**
+ * PlayList
+ */
+// プレイリストのロード
+function loadPlaylist() {
+    //
+}
+
+// プレイリストの追加
+ const loginForm = document.getElementById('addPlaylistForm');
+ loginForm.addEventListener('submit', async (event) => {
+     event.preventDefault();
+     const form = document.forms['addPlaylist'];
+     const name = form.elements['name'].value;
+     const is_created = await window.electronAPI.addPlaylist(name, name);
+     if (is_created) {
+         //reload
+     }
+ });
+    
+/**
+ * PlayListModal
+ */
+const modal = document.querySelector(".modal"); //modalを指定
+const overlay = document.querySelector(".overlay"); //overlayを指定
+const addPlaylist = document.getElementById("addPlaylist");
+const btnCloseModal = document.querySelector(".close-modal"); //modalを閉じるボタンを指定
+
+//modalとoverlayのhiddenクラスを消す（modalとoverlayが見えるようにする）処理
+const openModal = () => {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+
+//modalとoverlayのhiddenクラスを追加する（modalとoverlayが見えないようにする）処理
+const closeModal = () => {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+//modalの開くボタンと閉じるボタンをクリックした時の処理
+addPlaylist.addEventListener("click", openModal);
+btnCloseModal.addEventListener("click", closeModal);
+
+
 
 setInterval(Update, 500);
