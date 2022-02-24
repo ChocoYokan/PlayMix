@@ -161,21 +161,135 @@ function secToTime(second) {
 const search = document.getElementById('search');
 const search_text = document.getElementById('search_text');
 search.addEventListener('click', () => {
-    fetch('http://127.0.0.1:8000/api/search/?w='+ search_text.value)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
+    const truncate = (str, len=22) => str.length <= len ? str: (str.substr(0, len)+"...");
+    // fetch('http://127.0.0.1:8000/api/search/?w='+ search_text.value)
+    //     .then(response => response.json())
+    //     .then(data => {
+            // console.log(data);
+            const data = {
+                "results": [
+                    {
+                        "title": "[手書き]BADAPPLE!!　Fullﾊﾞｰｼﾞｮﾝ[完成]",
+                        "url": "https://www.nicovideo.jp/watch/sm5058847",
+                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/5058847/5058847",
+                        "content_type": "nikoniko"
+                    },
+                    {
+                        "title": "【邦楽BadApple!!】傷林果",
+                        "url": "https://www.nicovideo.jp/watch/sm15183453",
+                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15183453/15183453",
+                        "content_type": "nikoniko"
+                    },
+                    {
+                        "title": "【それっぽく歌ってみました】邦楽BadApple!!-傷林果-【杏ノ助】",
+                        "url": "https://www.nicovideo.jp/watch/sm15766933",
+                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15766933/15766933",
+                        "content_type": "nikoniko"
+                    },
+                    {
+                        "title": "BadApple!!PVを全てリンゴで再現してみた。",
+                        "url": "https://www.nicovideo.jp/watch/sm9837984",
+                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/9837984/9837984",
+                        "content_type": "nikoniko"
+                    },
+                    {
+                        "title": "【第7回MMD杯本選】BadApple!! feat.Miku＆Teto",
+                        "url": "https://www.nicovideo.jp/watch/sm15356011",
+                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15356011/15356011",
+                        "content_type": "nikoniko"
+                    },
+                    {
+                        "title": "Bad Apple!! - Full Version w/video [Lyrics in Romaji, Translation in English]",
+                        "url": "https://www.youtube.com/watch?v=9lNZ_Rnr7Jc",
+                        "thumb": "https://i.ytimg.com/vi/9lNZ_Rnr7Jc/default.jpg",
+                        "content_type": "youtube"
+                    },
+                    {
+                        "title": "【東方】Bad Apple!!　ＰＶ【影絵】",
+                        "url": "https://www.youtube.com/watch?v=RRFAMMwJxJw",
+                        "thumb": "https://i.ytimg.com/vi/RRFAMMwJxJw/default.jpg",
+                        "content_type": "youtube"
+                    },
+                    {
+                        "title": "【BadApple!!】傷林果 【ShouRinka】",
+                        "url": "https://www.youtube.com/watch?v=dx76YPgZviE",
+                        "thumb": "https://i.ytimg.com/vi/dx76YPgZviE/default.jpg",
+                        "content_type": "youtube"
+                    },
+                    {
+                        "title": "Bad Apple!! feat.nomico　full",
+                        "url": "https://www.youtube.com/watch?v=VbspAk-7g0M",
+                        "thumb": "https://i.ytimg.com/vi/VbspAk-7g0M/default.jpg",
+                        "content_type": "youtube"
+                    },
+                    {
+                        "title": "【東方影繪】Bad Apple ＰＶ【彩版】",
+                        "url": "https://www.youtube.com/watch?v=Je5OMIuI5mU",
+                        "thumb": "https://i.ytimg.com/vi/Je5OMIuI5mU/default.jpg",
+                        "content_type": "youtube"
+                    },
+                    {
+                        "title": "Bad Apple!!",
+                        "url": "https://open.spotify.com/track/3urItfkvXw8tPjwNs2lXdd",
+                        "thumb": "https://i.scdn.co/image/ab67616d0000b2737d80e26b06c19ea155052923",
+                        "content_type": "spotify"
+                    },
+                    {
+                        "title": "BADAPPLE JUICE",
+                        "url": "https://open.spotify.com/track/4t3EmCmWspjWR1t4xZxaBD",
+                        "thumb": "https://i.scdn.co/image/ab67616d0000b273a329f5bff2c414a7818a2d08",
+                        "content_type": "spotify"
+                    },
+                    {
+                        "title": "Bad Apple!! - English Remaster",
+                        "url": "https://open.spotify.com/track/64flSHeka6CUoz8XgCmgiT",
+                        "thumb": "https://i.scdn.co/image/ab67616d0000b273fb75b75655918b909275fc79",
+                        "content_type": "spotify"
+                    },
+                    {
+                        "title": "Brain On Drugs (feat. Nino White Badapple)",
+                        "url": "https://open.spotify.com/track/2LF3s6SvSCl2VYfNK2FNr9",
+                        "thumb": "https://i.scdn.co/image/ab67616d0000b2733bb923b1f298a7c7dc5be78e",
+                        "content_type": "spotify"
+                    },
+                    {
+                        "title": "Bad Apple!! feat.nomico",
+                        "url": "https://open.spotify.com/track/57JRZbE80MLsYbmb24cPee",
+                        "thumb": "https://i.scdn.co/image/ab67616d0000b273c58e8c7222bea9bcc7782c1d",
+                        "content_type": "spotify"
+                    }
+                ]
+            }
             const result_content = document.getElementById("search_result");
             result_content.innerHTML = ``
             result_content.innerHTML += `<h1 class="text-4xl font-bold">Youtube</h1>`
             let row_y = document.createElement("div");
             row_y.classList.add("flex", "overflow-x-auto", "mt-2");
-            for(i=0; i<data.results.length; i++){
+            for(let i=0; i<data.results.length; i++){
                 if(data.results[i].content_type == 'youtube'){
                     let col = document.createElement("div");
-                    col.classList.add("flex-none", "w-60", "mr-5");
-                    col.innerHTML = `<img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52">` +
-                                    `<p>${data.results[i].title}</p>`
+                    col.classList.add("flex-none", "w-60", "mr-5", "hover");
+                    let id = `y${i}`;
+                    col.innerHTML = `
+                        <div class="hover-img"><img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52"></div>
+                        <p>${data.results[i].title}</p>
+                        <div class="hover-text">
+                            <p class="text1">${truncate(data.results[i].title)}</p>
+                            <button
+                                id="${id}"
+                                class="content button p-0 w-10 h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+                                <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                    <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+                                                            C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
+                                                            C15.952,9,16,9.447,16,10z" />
+                                </svg>
+                            </button>
+                            <input id="${id}Title" type="hidden" value="${data.results[i].title}">
+                            <input id="${id}Type" type="hidden" value="youtube">
+                            <input id="${id}Thumb" type="hidden" value="${data.results[i].thumb}">
+                            <input id="${id}Url" type="hidden" value="${data.results[i].url}">
+                        </div>
+                    `
                     row_y.appendChild(col);
                 }
             }
@@ -184,12 +298,31 @@ search.addEventListener('click', () => {
             result_content.innerHTML += `<h1 class="text-4xl font-bold">ニコニコ動画</h1>`
             let row_n = document.createElement("div");
             row_n.classList.add("flex", "overflow-x-auto", "mt-2");
-            for(i=0; i<data.results.length; i++){
+            for(let i=0; i<data.results.length; i++){
                 if(data.results[i].content_type == 'nikoniko'){
                     let col = document.createElement("div");
-                    col.classList.add("flex-none", "w-60", "mr-5");
-                    col.innerHTML = `<img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52">` +
-                                    `<p>${data.results[i].title}</p>`
+                    col.classList.add("flex-none", "w-60", "mr-5", "hover");
+                    let id = `n${i}`;
+                    col.innerHTML = `
+                        <div class="hover-img"><img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52"></div>
+                        <p>${data.results[i].title}</p>
+                        <div class="hover-text">
+                            <p class="text1">${truncate(data.results[i].title)}</p>
+                            <button
+                                id="${id}"
+                                class="content button p-0 w-10 h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+                                <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                    <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+                                                            C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
+                                                            C15.952,9,16,9.447,16,10z" />
+                                </svg>
+                            </button>
+                            <input id="${id}Title" type="hidden" value="${data.results[i].title}">
+                            <input id="${id}Type" type="hidden" value="nikodo">
+                            <input id="${id}Thumb" type="hidden" value="${data.results[i].thumb}">
+                            <input id="${id}Url" type="hidden" value="${data.results[i].url}">
+                        </div>
+                    `
                     row_n.appendChild(col);
                 }
             }
@@ -198,17 +331,42 @@ search.addEventListener('click', () => {
             result_content.innerHTML += `<h1 class="text-4xl font-bold">Spotify</h1>`
             let row_s = document.createElement("div");
             row_s.classList.add("flex", "overflow-x-auto", "mt-2");
-            for(i=0; i<data.results.length; i++){
+            for(let i=0; i<data.results.length; i++){
                 if(data.results[i].content_type == 'spotify'){
                     let col = document.createElement("div");
-                    col.classList.add("flex-none", "w-60", "mr-5");
-                    col.innerHTML = `<img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52">` +
-                                    `<p>${data.results[i].title}</p>`
+                    col.classList.add("flex-none", "w-60", "mr-5", "hover");
+                    let id = `s${i}`;
+                    col.innerHTML = `
+                        <div class="hover-img"><img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52"></div>
+                        <p>${data.results[i].title}</p>
+                        <div class="hover-text">
+                            <p class="text1">${truncate(data.results[i].title)}</p>
+                            <button
+                                id="${id}"
+                                class="content button p-0 w-10 h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+                                <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                    <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+                                                            C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
+                                                            C15.952,9,16,9.447,16,10z" />
+                                </svg>
+                            </button>
+                            <input id="${id}Title" type="hidden" value="${data.results[i].title}">
+                            <input id="${id}Type" type="hidden" value="spotify">
+                            <input id="${id}Thumb" type="hidden" value="${data.results[i].thumb}">
+                            <input id="${id}Url" type="hidden" value="${data.results[i].url}">
+                        </div>
+                    `
                     row_s.appendChild(col);
                 }
             }
             result_content.appendChild(row_s);
-        });
+        // });
+        
+    var trigger = document.querySelectorAll(".content");
+
+    trigger.forEach(function(target) {
+        target.addEventListener('click', addContent);
+    });
 });
 
 /**
@@ -238,9 +396,9 @@ addPlaylistForm.addEventListener('submit', async (event) => {
      event.preventDefault();
      const form = document.forms['addPlaylist'];
      const name = form.elements['name'].value;
-     const is_created = await window.electronAPI.addPlaylist(name, name);
+     const is_created = await window.electronAPI.addPlaylist(name);
      if (is_created) {
-        closeModal();
+        btnCloseModal.dispatchEvent(new Event('click')); //モーダルを閉じる
         loadPlaylist();
      }
  });
@@ -248,27 +406,94 @@ addPlaylistForm.addEventListener('submit', async (event) => {
 /**
  * PlayListModal
  */
-const modal = document.querySelector(".modal"); //modalを指定
+const playlistModal = document.getElementById("playlistModal"); //modalを指定
 const overlay = document.querySelector(".overlay"); //overlayを指定
 const addPlaylist = document.getElementById("addPlaylist");
-const btnCloseModal = document.querySelector(".close-modal"); //modalを閉じるボタンを指定
-
-//modalとoverlayのhiddenクラスを消す（modalとoverlayが見えるようにする）処理
-const openModal = () => {
-  modal.classList.remove("hidden");
-  overlay.classList.remove("hidden");
-};
-
-//modalとoverlayのhiddenクラスを追加する（modalとoverlayが見えないようにする）処理
-const closeModal = () => {
-  modal.classList.add("hidden");
-  overlay.classList.add("hidden");
-};
+const btnCloseModals = document.querySelectorAll(".close-modal"); //modalを閉じるボタンを指定
 
 //modalの開くボタンと閉じるボタンをクリックした時の処理
-addPlaylist.addEventListener("click", openModal);
-btnCloseModal.addEventListener("click", closeModal);
+addPlaylist.addEventListener("click", () => {
+    playlistModal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+});
+btnCloseModals.forEach(function(btnCloseModal) {
+    btnCloseModal.addEventListener("click", () => {
+        playlistModal.classList.add("hidden");
+        contentModal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    });
+});
 
+/**
+ * Content
+ */
 
+// コンテンツの追加
+let name, contentType, thumbnail, url;
+async function addContent(e) {
+    const id = this.id;
+    name = document.getElementById(`${id}Title`).value;
+    contentType = document.getElementById(`${id}Type`).value;
+    thumbnail = document.getElementById(`${id}Thumb`).value;
+    url = document.getElementById(`${id}Url`).value;
+
+    //Modalを生成
+    const FormBody = document.getElementById("contentFormBody");
+    const playlistData = await window.electronAPI.loadPlaylist();
+    const contentDom = playlistData.map( (playlist) => { return `
+        <div class="form-check">
+            <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" 
+                type="radio" 
+                name="playlistGroup" 
+                value="${playlist.id}"
+                id="${playlist.id}" required>
+            <label class="form-check-label inline-block text-gray-800" for="${playlist.id}">
+                ${playlist.name}
+            </label>
+        </div>
+    `});
+
+    FormBody.innerHTML = contentDom.join("");
+
+    const openContentModal = () => {
+        contentModal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+    }
+    openContentModal();
+}
+
+// コンテンツの保存ボタンが押されたとき
+const addContentForm = document.getElementById('addContentForm');
+addContentForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const radioGroup = document.getElementsByName("playlistGroup");
+    const len = radioGroup.length;
+    let checkedPlaylist = "";
+
+    for (let i = 0; i < len; i++) {
+        if(radioGroup.item(i).checked) {
+            checkedPlaylist = radioGroup.item(i).value;
+        }
+    }
+
+    const content = {
+        playlist: checkedPlaylist,
+        name: name,
+        url: url,
+        content_type: contentType,
+        thumbnail: thumbnail,
+        order: 0, //並び順はとりあえず保留
+    }
+
+    const is_created = await window.electronAPI.addContent(content);
+    if (is_created) {
+        contentModal.classList.add("hidden");
+        overlay.classList.add("hidden");
+        loadPlaylist();
+    }
+ });
+
+// プレイリスト選択モーダル表示ContentModal
+const contentModal = document.querySelector("#ContentModal");
 
 setInterval(Update, 500);

@@ -142,3 +142,30 @@ ipcMain.handle("addPlaylist", (event, name) => {
 
     return result
 });
+
+//*
+//* コンテンツ
+//*
+// コンテンツの追加
+// {
+//     name: "", 
+//     url: "",
+//     content_type: "",  (nikodo | youtube | spotify)
+//     playlist: "",      playlistのプライマリーキー
+//     order: 0,
+//     thumbnail: "",
+// }
+ipcMain.handle("addContent", (event, content) => {
+    const accessToken = store.get("accessToken");
+
+    const result = axios.post("contents/", content, {
+            headers: { Authorization: `JWT ${accessToken}` },
+        })
+        .then( () => { return true })
+        .catch( (e) => {
+            console.log("addContentError", e.response);
+            return false;
+        });
+
+    return result
+})
