@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://www.youtube.com; frame-src https://www.youtube.com; child-src 'none'; object-src 'none'">
+        content="default-src 'self'; script-src 'self' https://www.youtube.com; frame-src https://www.youtube.com; child-src 'none'; object-src 'none'; connect-src http://127.0.0.1:8000/; img-src *">
     <link href="./output.css" rel="stylesheet" />
     <script src="./index.js" defer></script>
     <title>Play Mix</title>
@@ -95,19 +95,19 @@
             <div class="flex justify-between p-4">
                 <div></div>
                 <div class="flex w-3/5 h-10 m-4 overflow-hidden rounded-xl outline outline-2 text-sub2">
-                    <input type="text" placeholder="  Search" class="w-5/6 rounded-l-xl bg-sub4">
-                    <button class="w-1/6"><img src="../static/search.svg" class="h-8 ml-auto mr-auto" alt=""></button>
+                    <input id="search_text" value="" type="text" placeholder="  Search" class="w-5/6 rounded-l-xl bg-sub4">
+                    <button class="w-1/6" id="search"><img src="../static/search.svg" class="h-8 ml-auto mr-auto" alt=""></button>
                 </div>
                 <div></div>
             </div>
         </div>
-        <div class="mt-20 mb-20 p-10">
-            <h1 class="text-4xl font-bold">Youtube</h1>
+        <div id="search_result" class="mt-20 mb-20 p-10">
+            <!-- <h1 class="text-4xl font-bold">Youtube</h1>
             <div class="flex overflow-x-auto mt-2">
                 <div class="flex-none w-60 mr-5">
                     <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
+                </div> -->
+                <!-- <div class="flex-none w-60 mr-5">
                     <div class="w-52 h-52 bg-white"></div>
                 </div>
                 <div class="flex-none w-60 mr-5">
@@ -128,8 +128,8 @@
                 <div class="flex-none w-60 mr-5">
                     <div class="w-52 h-52 bg-white"></div>
                 </div>
-            </div>
-            <h1 class="text-4xl font-bold mt-5">Spotify</h1>
+            </div> -->
+            <!-- <h1 class="text-4xl font-bold mt-5">Spotify</h1>
             <div class="flex overflow-x-auto mt-2">
                 <div class="flex-none w-60 mr-5">
                     <div class="w-52 h-52 bg-white"></div>
@@ -164,7 +164,7 @@
                 <div class="flex-none w-60 mr-5">
                     <div class="w-52 h-52 bg-white"></div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

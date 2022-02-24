@@ -150,4 +150,57 @@ function secToTime(second) {
     return ret;
 }
 
+const search = document.getElementById('search');
+const search_text = document.getElementById('search_text');
+search.addEventListener('click', () => {
+    fetch('http://127.0.0.1:8000/api/search/?w='+ search_text.value)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const result_content = document.getElementById("search_result");
+            result_content.innerHTML = ``
+            result_content.innerHTML += `<h1 class="text-4xl font-bold">Youtube</h1>`
+            let row_y = document.createElement("div");
+            row_y.classList.add("flex", "overflow-x-auto", "mt-2");
+            for(i=0; i<data.results.length; i++){
+                if(data.results[i].content_type == 'youtube'){
+                    let col = document.createElement("div");
+                    col.classList.add("flex-none", "w-60", "mr-5");
+                    col.innerHTML = `<img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52">` +
+                                    `<p>${data.results[i].title}</p>`
+                    row_y.appendChild(col);
+                }
+            }
+            result_content.appendChild(row_y);
+
+            result_content.innerHTML += `<h1 class="text-4xl font-bold">ニコニコ動画</h1>`
+            let row_n = document.createElement("div");
+            row_n.classList.add("flex", "overflow-x-auto", "mt-2");
+            for(i=0; i<data.results.length; i++){
+                if(data.results[i].content_type == 'nikoniko'){
+                    let col = document.createElement("div");
+                    col.classList.add("flex-none", "w-60", "mr-5");
+                    col.innerHTML = `<img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52">` +
+                                    `<p>${data.results[i].title}</p>`
+                    row_n.appendChild(col);
+                }
+            }
+            result_content.appendChild(row_n);
+
+            result_content.innerHTML += `<h1 class="text-4xl font-bold">Spotify</h1>`
+            let row_s = document.createElement("div");
+            row_s.classList.add("flex", "overflow-x-auto", "mt-2");
+            for(i=0; i<data.results.length; i++){
+                if(data.results[i].content_type == 'spotify'){
+                    let col = document.createElement("div");
+                    col.classList.add("flex-none", "w-60", "mr-5");
+                    col.innerHTML = `<img src="${data.results[i].thumb}"  alt=""  class="w-52 h-52">` +
+                                    `<p>${data.results[i].title}</p>`
+                    row_s.appendChild(col);
+                }
+            }
+            result_content.appendChild(row_s);
+        });
+});
+
 setInterval(Update, 500);

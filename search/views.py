@@ -101,7 +101,7 @@ def nikoniko_search(word):
 
 def sp_info(query: str):
     # q = 検索文字,limit = 件数
-    results = sp.search(q=query, limit=1)
+    results = sp.search(q=query, limit=5)
     musics = []
     music = {}
     # track_name = 曲名, artist = アーティスト名, album = アルバム名, image_url = ジャケットのurl，
