@@ -163,104 +163,103 @@ const truncate = (str, len=22) => str.length <= len ? str: (str.substr(0, len)+"
 const search = document.getElementById('search');
 const search_text = document.getElementById('search_text');
 search.addEventListener('click', () => {
-    // fetch('http://127.0.0.1:8000/api/search/?w='+ search_text.value)
-    //     .then(response => response.json())
-    //     .then(data => {
-            // console.log(data);
-            const data = {
-                "results": [
-                    {
-                        "title": "[手書き]BADAPPLE!!　Fullﾊﾞｰｼﾞｮﾝ[完成]",
-                        "url": "https://www.nicovideo.jp/watch/sm5058847",
-                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/5058847/5058847",
-                        "content_type": "nikoniko"
-                    },
-                    {
-                        "title": "【邦楽BadApple!!】傷林果",
-                        "url": "https://www.nicovideo.jp/watch/sm15183453",
-                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15183453/15183453",
-                        "content_type": "nikoniko"
-                    },
-                    {
-                        "title": "【それっぽく歌ってみました】邦楽BadApple!!-傷林果-【杏ノ助】",
-                        "url": "https://www.nicovideo.jp/watch/sm15766933",
-                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15766933/15766933",
-                        "content_type": "nikoniko"
-                    },
-                    {
-                        "title": "BadApple!!PVを全てリンゴで再現してみた。",
-                        "url": "https://www.nicovideo.jp/watch/sm9837984",
-                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/9837984/9837984",
-                        "content_type": "nikoniko"
-                    },
-                    {
-                        "title": "【第7回MMD杯本選】BadApple!! feat.Miku＆Teto",
-                        "url": "https://www.nicovideo.jp/watch/sm15356011",
-                        "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15356011/15356011",
-                        "content_type": "nikoniko"
-                    },
-                    {
-                        "title": "Bad Apple!! - Full Version w/video [Lyrics in Romaji, Translation in English]",
-                        "url": "https://www.youtube.com/watch?v=9lNZ_Rnr7Jc",
-                        "thumb": "https://i.ytimg.com/vi/9lNZ_Rnr7Jc/default.jpg",
-                        "content_type": "youtube"
-                    },
-                    {
-                        "title": "【東方】Bad Apple!!　ＰＶ【影絵】",
-                        "url": "https://www.youtube.com/watch?v=RRFAMMwJxJw",
-                        "thumb": "https://i.ytimg.com/vi/RRFAMMwJxJw/default.jpg",
-                        "content_type": "youtube"
-                    },
-                    {
-                        "title": "【BadApple!!】傷林果 【ShouRinka】",
-                        "url": "https://www.youtube.com/watch?v=dx76YPgZviE",
-                        "thumb": "https://i.ytimg.com/vi/dx76YPgZviE/default.jpg",
-                        "content_type": "youtube"
-                    },
-                    {
-                        "title": "Bad Apple!! feat.nomico　full",
-                        "url": "https://www.youtube.com/watch?v=VbspAk-7g0M",
-                        "thumb": "https://i.ytimg.com/vi/VbspAk-7g0M/default.jpg",
-                        "content_type": "youtube"
-                    },
-                    {
-                        "title": "【東方影繪】Bad Apple ＰＶ【彩版】",
-                        "url": "https://www.youtube.com/watch?v=Je5OMIuI5mU",
-                        "thumb": "https://i.ytimg.com/vi/Je5OMIuI5mU/default.jpg",
-                        "content_type": "youtube"
-                    },
-                    {
-                        "title": "Bad Apple!!",
-                        "url": "https://open.spotify.com/track/3urItfkvXw8tPjwNs2lXdd",
-                        "thumb": "https://i.scdn.co/image/ab67616d0000b2737d80e26b06c19ea155052923",
-                        "content_type": "spotify"
-                    },
-                    {
-                        "title": "BADAPPLE JUICE",
-                        "url": "https://open.spotify.com/track/4t3EmCmWspjWR1t4xZxaBD",
-                        "thumb": "https://i.scdn.co/image/ab67616d0000b273a329f5bff2c414a7818a2d08",
-                        "content_type": "spotify"
-                    },
-                    {
-                        "title": "Bad Apple!! - English Remaster",
-                        "url": "https://open.spotify.com/track/64flSHeka6CUoz8XgCmgiT",
-                        "thumb": "https://i.scdn.co/image/ab67616d0000b273fb75b75655918b909275fc79",
-                        "content_type": "spotify"
-                    },
-                    {
-                        "title": "Brain On Drugs (feat. Nino White Badapple)",
-                        "url": "https://open.spotify.com/track/2LF3s6SvSCl2VYfNK2FNr9",
-                        "thumb": "https://i.scdn.co/image/ab67616d0000b2733bb923b1f298a7c7dc5be78e",
-                        "content_type": "spotify"
-                    },
-                    {
-                        "title": "Bad Apple!! feat.nomico",
-                        "url": "https://open.spotify.com/track/57JRZbE80MLsYbmb24cPee",
-                        "thumb": "https://i.scdn.co/image/ab67616d0000b273c58e8c7222bea9bcc7782c1d",
-                        "content_type": "spotify"
-                    }
-                ]
-            }
+    fetch('http://127.0.0.1:8000/api/search/?w='+ search_text.value)
+        .then(response => response.json())
+        .then(data => {
+            // const data = {
+            //     "results": [
+            //         {
+            //             "title": "[手書き]BADAPPLE!!　Fullﾊﾞｰｼﾞｮﾝ[完成]",
+            //             "url": "https://www.nicovideo.jp/watch/sm5058847",
+            //             "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/5058847/5058847",
+            //             "content_type": "nikoniko"
+            //         },
+            //         {
+            //             "title": "【邦楽BadApple!!】傷林果",
+            //             "url": "https://www.nicovideo.jp/watch/sm15183453",
+            //             "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15183453/15183453",
+            //             "content_type": "nikoniko"
+            //         },
+            //         {
+            //             "title": "【それっぽく歌ってみました】邦楽BadApple!!-傷林果-【杏ノ助】",
+            //             "url": "https://www.nicovideo.jp/watch/sm15766933",
+            //             "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15766933/15766933",
+            //             "content_type": "nikoniko"
+            //         },
+            //         {
+            //             "title": "BadApple!!PVを全てリンゴで再現してみた。",
+            //             "url": "https://www.nicovideo.jp/watch/sm9837984",
+            //             "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/9837984/9837984",
+            //             "content_type": "nikoniko"
+            //         },
+            //         {
+            //             "title": "【第7回MMD杯本選】BadApple!! feat.Miku＆Teto",
+            //             "url": "https://www.nicovideo.jp/watch/sm15356011",
+            //             "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15356011/15356011",
+            //             "content_type": "nikoniko"
+            //         },
+            //         {
+            //             "title": "Bad Apple!! - Full Version w/video [Lyrics in Romaji, Translation in English]",
+            //             "url": "https://www.youtube.com/watch?v=9lNZ_Rnr7Jc",
+            //             "thumb": "https://i.ytimg.com/vi/9lNZ_Rnr7Jc/default.jpg",
+            //             "content_type": "youtube"
+            //         },
+            //         {
+            //             "title": "【東方】Bad Apple!!　ＰＶ【影絵】",
+            //             "url": "https://www.youtube.com/watch?v=RRFAMMwJxJw",
+            //             "thumb": "https://i.ytimg.com/vi/RRFAMMwJxJw/default.jpg",
+            //             "content_type": "youtube"
+            //         },
+            //         {
+            //             "title": "【BadApple!!】傷林果 【ShouRinka】",
+            //             "url": "https://www.youtube.com/watch?v=dx76YPgZviE",
+            //             "thumb": "https://i.ytimg.com/vi/dx76YPgZviE/default.jpg",
+            //             "content_type": "youtube"
+            //         },
+            //         {
+            //             "title": "Bad Apple!! feat.nomico　full",
+            //             "url": "https://www.youtube.com/watch?v=VbspAk-7g0M",
+            //             "thumb": "https://i.ytimg.com/vi/VbspAk-7g0M/default.jpg",
+            //             "content_type": "youtube"
+            //         },
+            //         {
+            //             "title": "【東方影繪】Bad Apple ＰＶ【彩版】",
+            //             "url": "https://www.youtube.com/watch?v=Je5OMIuI5mU",
+            //             "thumb": "https://i.ytimg.com/vi/Je5OMIuI5mU/default.jpg",
+            //             "content_type": "youtube"
+            //         },
+            //         {
+            //             "title": "Bad Apple!!",
+            //             "url": "https://open.spotify.com/track/3urItfkvXw8tPjwNs2lXdd",
+            //             "thumb": "https://i.scdn.co/image/ab67616d0000b2737d80e26b06c19ea155052923",
+            //             "content_type": "spotify"
+            //         },
+            //         {
+            //             "title": "BADAPPLE JUICE",
+            //             "url": "https://open.spotify.com/track/4t3EmCmWspjWR1t4xZxaBD",
+            //             "thumb": "https://i.scdn.co/image/ab67616d0000b273a329f5bff2c414a7818a2d08",
+            //             "content_type": "spotify"
+            //         },
+            //         {
+            //             "title": "Bad Apple!! - English Remaster",
+            //             "url": "https://open.spotify.com/track/64flSHeka6CUoz8XgCmgiT",
+            //             "thumb": "https://i.scdn.co/image/ab67616d0000b273fb75b75655918b909275fc79",
+            //             "content_type": "spotify"
+            //         },
+            //         {
+            //             "title": "Brain On Drugs (feat. Nino White Badapple)",
+            //             "url": "https://open.spotify.com/track/2LF3s6SvSCl2VYfNK2FNr9",
+            //             "thumb": "https://i.scdn.co/image/ab67616d0000b2733bb923b1f298a7c7dc5be78e",
+            //             "content_type": "spotify"
+            //         },
+            //         {
+            //             "title": "Bad Apple!! feat.nomico",
+            //             "url": "https://open.spotify.com/track/57JRZbE80MLsYbmb24cPee",
+            //             "thumb": "https://i.scdn.co/image/ab67616d0000b273c58e8c7222bea9bcc7782c1d",
+            //             "content_type": "spotify"
+            //         }
+            //     ]
+            // }
             const result_content = document.getElementById("search_result");
             result_content.innerHTML = ``
             result_content.innerHTML += `<h1 class="text-4xl font-bold">Youtube</h1>`
@@ -361,12 +360,12 @@ search.addEventListener('click', () => {
                 }
             }
             result_content.appendChild(row_s);
-        // });
-        
-    var trigger = document.querySelectorAll(".content");
 
-    trigger.forEach(function(target) {
-        target.addEventListener('click', addContent);
+            var trigger = document.querySelectorAll(".content");
+
+            trigger.forEach(function(target) {
+                target.addEventListener('click', addContent);
+            });
     });
 });
 
@@ -444,10 +443,10 @@ addPlaylist.addEventListener("click", () => {
  */
 
 // コンテンツの追加
-let name, contentType, thumbnail, url;
+let contentName, contentType, thumbnail, url;
 async function addContent(e) {
     const id = this.id;
-    name = document.getElementById(`${id}Title`).value;
+    contentName = document.getElementById(`${id}Title`).value;
     contentType = document.getElementById(`${id}Type`).value;
     thumbnail = document.getElementById(`${id}Thumb`).value;
     url = document.getElementById(`${id}Url`).value;
@@ -493,12 +492,13 @@ addContentForm.addEventListener('submit', async (event) => {
 
     const content = {
         playlist: checkedPlaylist,
-        name: name,
+        name: contentName,
         url: url,
         content_type: contentType,
         thumbnail: thumbnail,
         order: 0, //並び順はとりあえず保留
     }
+    console.log(content);
 
     const is_created = await window.electronAPI.addContent(content);
     if (is_created) {
