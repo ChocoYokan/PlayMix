@@ -70,3 +70,81 @@ input[type=range]::-webkit-slider-runnable-track  {
 #main-home{
     display: block;
 }
+
+.close-modal {
+    position: absolute;              /* modalを閉じるボタン */
+    top: 4px;
+    right: 22px;
+    font-size: 40px;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+  
+.hidden {
+    display: none;            /* hiddenクラスが付与されている場合は表示させないようにする */
+}
+  
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    background-color: #717B88;
+    padding: 6rem;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);   /* modalに影を作る */
+    z-index: 10;           /* z-indexでmodalを一番上に位置させる */
+}
+  
+.overlay {
+    position: absolute; /* overlayの絶対位置を左上を起点にし幅と高さを100%にする */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);    
+    backdrop-filter: blur(3px); /* 一番下のbody領域をぼやかす */
+    z-index: 5; /* z-indexの数字を0と10の間の数字にし、bodyとmodalの真ん中に位置させる */
+}
+
+.hover {
+    position: relative;
+    width: 208px;
+    height:208px;
+  }
+  .hover .hover-img {
+    margin: 0;
+    padding: 0;
+  }
+  .hover .hover-text {
+    position:    absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: #fff;
+    background-color:    rgba(0,0,0,0.65);
+    /*透明にして表示させない*/
+    opacity: 0;
+    /*ホバーの動き方*/
+    transition: .3s ease-in-out;
+  }
+  .hover .hover-text .button {
+    
+  }
+  .hover .hover-text .text1 {
+    font-size: 22px;
+    padding: 10px 20px;
+  }
+  .hover .hover-text .text2 {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  .hover:hover .hover-text {
+    /*不透明にして表示*/
+    opacity: 1;
+  }

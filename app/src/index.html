@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://www.youtube.com https://sdk.scdn.co; frame-src https://www.youtube.com https://sdk.scdn.co; child-src 'none'; object-src 'none'; connect-src https://api.spotify.com/">
+        content="default-src 'self'; script-src 'self' https://www.youtube.com https://sdk.scdn.co; frame-src https://www.youtube.com https://sdk.scdn.co; child-src 'none'; object-src 'none'; connect-src https://api.spotify.com/; img-src *">
     <link href="./output.css" rel="stylesheet" />
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="./index.js" defer></script>
@@ -24,70 +24,7 @@
                 <div></div>
             </div>
         </div>
-        <div class="mt-20 p-10">
-            <h1 class="text-4xl font-bold">Playlist</h1>
-            <div class="flex overflow-x-auto mt-2">
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-            </div>
-            <h1 class="text-4xl font-bold mt-5">Playlist2</h1>
-            <div class="flex overflow-x-auto mt-2">
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-            </div>
-            <h1 class="text-4xl font-bold mt-5">Playlist3</h1>
-            <div class="flex overflow-x-auto mt-2">
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-            </div>
+        <div id="playlists" class="mt-20 p-10">
         </div>
     </div>
     <!-- 検索画面 -->
@@ -96,76 +33,13 @@
             <div class="flex justify-between p-4">
                 <div></div>
                 <div class="flex w-3/5 h-10 m-4 overflow-hidden rounded-xl outline outline-2 text-sub2">
-                    <input type="text" placeholder="  Search" class="w-5/6 rounded-l-xl bg-sub4">
-                    <button class="w-1/6"><img src="../static/search.svg" class="h-8 ml-auto mr-auto" alt=""></button>
+                    <input id="search_text" value="" type="text" placeholder="  Search" class="w-5/6 rounded-l-xl bg-sub4">
+                    <button class="w-1/6" id="search"><img src="../static/search.svg" class="h-8 ml-auto mr-auto" alt=""></button>
                 </div>
                 <div></div>
             </div>
         </div>
-        <div class="mt-20 mb-20 p-10">
-            <h1 class="text-4xl font-bold">Youtube</h1>
-            <div class="flex overflow-x-auto mt-2">
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-            </div>
-            <h1 class="text-4xl font-bold mt-5">Spotify</h1>
-            <div class="flex overflow-x-auto mt-2">
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-            </div>
-            <h1 class="text-4xl font-bold mt-5">Apple Music</h1>
-            <div class="flex overflow-x-auto mt-2">
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-                <div class="flex-none w-60 mr-5">
-                    <div class="w-52 h-52 bg-white"></div>
-                </div>
-            </div>
+        <div id="search_result" class="mt-20 mb-20 p-10">
         </div>
     </div>
 
@@ -185,6 +59,7 @@
             <li>
                 <p>Playlist</p>
                 <button
+                    id="addPlaylist"
                     class="block transition ease-in-out py-1 my-3 w-full text-xl text-center font-thin rounded-lg hover:bg-sub3">
                     <div class="flex items-center text-center">
                         <img src="../static/add.svg" class="h-8 mx-2">
@@ -229,6 +104,35 @@
     <!-- 再生部分 -->
     <div class="fixed bottom-0 left-0 bg-white w-[480px] h-[270px]">
         <div id="youtube" class="w-full h-full"></div>
+    </div>
+
+    <!-- プレイリストモーダル-->
+    <div class="overlay hidden"></div>
+    <div id="playlistModal" class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <div>
+            <form id="addPlaylistForm" name="addPlaylist">
+                <p>プレイリストを作成</p>
+                <label for="name" class="text-left">Name</label>
+                <input type="text" name="name" class="w-full h-10 mb-4 text-sub3" required>
+                <button type="submit" class="rounded bg-green-400">作成</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- コンテンツ追加モーダル -->
+    <div id="ContentModal" class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <div>
+            <form id="addContentForm" name="addContent">
+                <p>プレイリストを選択</p>
+                <div class="flex justify-center">
+                    <div id="contentFormBody">
+                    </div>
+                </div>
+                <button type="submit" class="rounded bg-green-400">保存</button>
+            </form>
+        </div>
     </div>
 
 </body>
