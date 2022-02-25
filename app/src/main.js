@@ -73,7 +73,7 @@ function createWindow() {
             })
             .catch((err) => {
                 //通信エラー
-                console.log("error", err.data.detail);
+                console.log("error", err.data);
             });
     })
 
