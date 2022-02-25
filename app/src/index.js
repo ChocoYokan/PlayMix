@@ -360,12 +360,13 @@ search.addEventListener('click', () => {
                 }
             }
             result_content.appendChild(row_s);
-
+        })
+        .then(() => {
             var trigger = document.querySelectorAll(".content");
-
+    
             trigger.forEach(function(target) {
                 target.addEventListener('click', addContent);
-            });
+        });
     });
 });
 
@@ -423,20 +424,20 @@ addPlaylistForm.addEventListener('submit', async (event) => {
 const playlistModal = document.getElementById("playlistModal"); //modalを指定
 const overlay = document.querySelector(".overlay"); //overlayを指定
 const addPlaylist = document.getElementById("addPlaylist");
-// const btnCloseModals = document.querySelectorAll(".close-modal"); //modalを閉じるボタンを指定
+const btnCloseModals = document.querySelectorAll(".close-modal"); //modalを閉じるボタンを指定
 
 //modalの開くボタンと閉じるボタンをクリックした時の処理
 addPlaylist.addEventListener("click", () => {
     playlistModal.classList.remove("hidden");
     overlay.classList.remove("hidden");
 });
-// btnCloseModals.forEach(function(btnCloseModal) {
-//     btnCloseModal.addEventListener("click", () => {
-//         playlistModal.classList.add("hidden");
-//         contentModal.classList.add("hidden");
-//         overlay.classList.add("hidden");
-//     });
-// });
+btnCloseModals.forEach(function(btnCloseModal) {
+    btnCloseModal.addEventListener("click", () => {
+        playlistModal.classList.add("hidden");
+        contentModal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    });
+});
 
 /**
  * Content
