@@ -7,3 +7,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
     loadPlaylist: async () => await ipcRenderer.invoke('loadPlaylist'),
     addContent: async (content) => await ipcRenderer.invoke('addContent', content),
 })
+
+contextBridge.exposeInMainWorld('require', {
+    oauthSpotify: () => ipcRenderer.invoke('oauthSpotify'),
+    getSpotifyAccesssToken: () => ipcRenderer.invoke('getSpotifyAccesssToken'),
+})
