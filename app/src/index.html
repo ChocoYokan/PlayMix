@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://www.youtube.com; frame-src https://www.youtube.com; child-src 'none'; object-src 'none'">
+        content="default-src 'self'; script-src 'self' https://www.youtube.com https://sdk.scdn.co; frame-src https://www.youtube.com https://sdk.scdn.co; child-src 'none'; object-src 'none'; connect-src https://api.spotify.com/">
     <link href="./output.css" rel="stylesheet" />
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="./index.js" defer></script>
     <title>Play Mix</title>
 </head>
@@ -227,7 +228,7 @@
 
     <!-- 再生部分 -->
     <div class="fixed bottom-0 left-0 bg-white w-[480px] h-[270px]">
-        <div id="player" class="w-full h-full"></div>
+        <div id="youtube" class="w-full h-full"></div>
     </div>
 
 </body>
