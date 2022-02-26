@@ -37,8 +37,8 @@ class Content(models.Model):
     class Meta:
         verbose_name = _("保存コンテンツ")
         verbose_name_plural = _("保存コンテンツ一覧")
-        unique_together = ["playlist", "order"]
-        ordering = ['order']
+        # unique_together = ["playlist", "order"]
+        # ordering = ['order']
 
     playlist = models.ForeignKey(
         PlayList,
