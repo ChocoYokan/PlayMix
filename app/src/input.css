@@ -71,8 +71,8 @@ input[type=range]::-webkit-slider-runnable-track  {
     display: block;
 }
 
-.close-modal {
-    position: absolute;              /* modalを閉じるボタン */
+/* .close-modal {
+    position: absolute;         
     top: 4px;
     right: 22px;
     font-size: 40px;
@@ -80,7 +80,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     cursor: pointer;
     border: none;
     background: none;
-}
+} */
   
 .hidden {
     display: none;            /* hiddenクラスが付与されている場合は表示させないようにする */
@@ -91,12 +91,6 @@ input[type=range]::-webkit-slider-runnable-track  {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    background-color: #717B88;
-    padding: 6rem;
-    border-radius: 5px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);   /* modalに影を作る */
-    z-index: 10;           /* z-indexでmodalを一番上に位置させる */
 }
   
 .overlay {
@@ -112,8 +106,6 @@ input[type=range]::-webkit-slider-runnable-track  {
 
 .hover {
     position: relative;
-    width: 208px;
-    height:208px;
   }
   .hover .hover-img {
     margin: 0;

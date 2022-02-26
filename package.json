@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "(cd ./app && npx tailwindcss -i ./src/input.css -o ./src/output.css) && electron ./app",
+    "start": "(cd ./app && npx tailwindcss -i ./src/input.css -o ./src/output.css) && electron ./app --unhandled-rejections=strict",
     "build-macOS": "electron-packager ./app PlayMix --platform=darwin --arch=x64 --icon=app.ico --overwrite",
     "build-windows": "electron-packager ./app PlayMix --platform=win32 --arch=x64 --icon=app.ico --overwrite"
   },

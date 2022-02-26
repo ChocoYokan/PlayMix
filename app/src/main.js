@@ -5,20 +5,20 @@ const express = require('express');
 const axios = require('axios');
 const Store = require('electron-store')
 const keytar = require('keytar');
-const electronReload = require('electron-reload');
+// const electronReload = require('electron-reload');
 const servicename = "playmix";
 require('dotenv').config({ path: __dirname + '/../../.env' });
-require('electron-reload')(__dirname, {
-    electron: require('${__dirname}/../../node_modules/electron')
-});
-global.store = new Store({encryptionKey: 'PlayMix'});
+// require('electron-reload')(__dirname, {
+//     electron: require('${__dirname}/../../node_modules/electron')
+// });
+global.store = new Store({ encryptionKey: 'PlayMix' });
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 let mainWindow;
 
 function createWindow() {
-    
+
     mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: false,
@@ -28,7 +28,7 @@ function createWindow() {
         width: 1200, height: 800,
         minWidth: 800, minHeight: 300,
     });
-    
+
     const login = (accessToken) => {
         const options = {
             headers: { Authorization: `JWT ${accessToken}` }
@@ -55,7 +55,7 @@ function createWindow() {
 
     ipcMain.on('auth-account', (event, [email, password]) => {
         const webContents = event.sender;
-        
+
         const options = {
             "email": email,
             "password": password
@@ -151,7 +151,7 @@ async function oauthSpotify() {
         url: token_url,
     };
     try {
-        const store = new Store();
+        // const store = new Store();
         const date = new Date();
         const unix_t = Math.floor(date.getTime() / 1000);
         const result = await axios(opt);
@@ -168,12 +168,18 @@ async function oauthSpotify() {
 }
 
 async function getSpotifyAccesssToken() {
+    console.log("AAA");
     const date = new Date();
+    console.log("AAA");
     const unix_t = Math.floor(date.getTime() / 1000);
-    const store = new Store();
+    console.log("AAA");
+    // const store = new Store();
+    console.log("AAA");
+    console.log(store.get("spotify_expires_in"));
     if (store.get("spotify_expires_in") <= unix_t) {
         const token_url = "https://accounts.spotify.com/api/token";
         const refresh_token = await keytar.getPassword(servicename, "refresh_token");
+        console.log(refresh_token);
         const client_id = process.env.SPOTIFY_CLIENT_ID;
         const body = new URLSearchParams({
             grant_type: 'refresh_token',
@@ -189,7 +195,7 @@ async function getSpotifyAccesssToken() {
             url: token_url,
         };
         try {
-            const store = new Store();
+            // const store = new Store();
             const date = new Date();
             const unix_t = Math.floor(date.getTime() / 1000);
             const result = await axios(opt);
@@ -284,10 +290,10 @@ ipcMain.handle("addPlaylist", (event, name) => {
     }
 
     const result = axios.post("playlist/", params, {
-            headers: { Authorization: `JWT ${accessToken}` },
-        })
-        .then( () => { return true })
-        .catch( () => { return false })
+        headers: { Authorization: `JWT ${accessToken}` },
+    })
+        .then(() => { return true })
+        .catch(() => { return false })
 
     return result
 });
@@ -308,10 +314,10 @@ ipcMain.handle("addContent", (event, content) => {
     const accessToken = store.get("accessToken");
 
     const result = axios.post("contents/", content, {
-            headers: { Authorization: `JWT ${accessToken}` },
-        })
-        .then( () => { return true })
-        .catch( (e) => {
+        headers: { Authorization: `JWT ${accessToken}` },
+    })
+        .then(() => { return true })
+        .catch((e) => {
             console.log("addContentError", e.response);
             return false;
         });
